@@ -41,7 +41,7 @@ class _ListActorsScreenState extends State<ListActorsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Actors Cast')),
+      appBar: AppBar(title: const Text('Main Cast')),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _errorMessage.isNotEmpty

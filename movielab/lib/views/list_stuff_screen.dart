@@ -36,7 +36,7 @@ class _ListStuffScreenState extends State<ListStuffScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Stuff')),
+      appBar: AppBar(title: Text('Main Stuff')),
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
           : _errorMessage.isNotEmpty
