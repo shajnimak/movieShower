@@ -1,0 +1,35 @@
+{
+    "stuff": [
+      {
+        "id": 1,
+        "name": "Álex Pina",
+        "description": "Creator of La Casa de Papel, Álex Pina is a Spanish television producer, writer, series creator, and director, known for his gripping and intricate plots.",
+        "imageUrl": "https://diariodeavisos.elespanol.com/wp-content/uploads/2020/08/ALEXPINA_VANCOUVER_tamaraarranz_horizontal-1024x849.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Jesús Colmenar",
+        "description": "Director of many episodes of La Casa de Papel, Jesús Colmenar has also served as an executive producer, significantly shaping the show's success.",
+        "imageUrl": "https://i0.wp.com/image.tmdb.org/t/p/w300/pvfNjlwcwUFFuB9CSFgVcEGzUZt.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Esther Martínez Lobato",
+        "description": "As an editor and co-creator alongside Álex Pina, Esther Martínez Lobato has played a crucial role in defining the narrative style of La Casa de Papel.",
+        "imageUrl": "https://actoragecheck.com/limage/L2VLZnNPcTJsVUFUMVVwUEF4NmlSeWhUNk9FOC5qcGcAACh231.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Manel Santisteban",
+        "description": "Manel Santisteban, the theme music composer for La Casa de Papel, created the iconic opening song 'My Life Is Going On' that complements the show's intense and dramatic tone.",
+        "imageUrl": "https://images.mubicdn.net/images/cast_member/395745/cache-479746-1571299776/image-w856.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Vancouver Media",
+        "description": "The production company behind La Casa de Papel, Vancouver Media, founded by Álex Pina, is renowned for its high-quality Spanish television series.",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1a/2010-08_750_Burrard_Street.jpg"
+      }
+    ]
+  }
+  

@@ -2,11 +2,14 @@
 import 'package:flutter/material.dart';
 import '../controllers/actor_controller.dart';
 import '../models/actor.dart';
-import '../widgets/custom_list_tile.dart';
+import '../widgets/custom_actor_list_tile.dart';
 import 'detail_actor_screen.dart';
 
 class ListActorsScreen extends StatefulWidget {
+  const ListActorsScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _ListActorsScreenState createState() => _ListActorsScreenState();
 }
 
@@ -29,7 +32,8 @@ class _ListActorsScreenState extends State<ListActorsScreen> {
     } catch (e) {
       setState(() {
         _isLoading = false;
-        _errorMessage = 'Failed to load actors: $e'; // Capturing and displaying error message
+        _errorMessage =
+            'Failed to load actors: $e'; // Capturing and displaying error message
       });
     }
   }
@@ -37,27 +41,28 @@ class _ListActorsScreenState extends State<ListActorsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('La Casa de Papel Actors')),
+      appBar: AppBar(title: const Text('Actors Cast')),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : _errorMessage.isNotEmpty
-            ? Center(child: Text(_errorMessage))
-            : ListView.builder(
-                itemCount: _actors.length,
-                itemBuilder: (context, index) {
-                  return CustomListTile(
-                    actor: _actors[index],
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailActorScreen(actor: _actors[index]),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
+              ? Center(child: Text(_errorMessage))
+              : ListView.builder(
+                  itemCount: _actors.length,
+                  itemBuilder: (context, index) {
+                    return CustomListTile(
+                      actor: _actors[index],
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailActorScreen(actor: _actors[index]),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
     );
   }
 }

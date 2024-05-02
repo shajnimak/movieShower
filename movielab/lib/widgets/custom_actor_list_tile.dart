@@ -1,5 +1,6 @@
 // lib/widgets/custom_list_tile.dart
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:cached_network_image/cached_network_image.dart';
 import '../models/actor.dart';
 
@@ -8,15 +9,15 @@ class CustomListTile extends StatelessWidget {
   final VoidCallback onTap;
 
   const CustomListTile({
-    Key? key,
+    super.key,
     required this.actor,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -30,8 +31,9 @@ class CustomListTile extends StatelessWidget {
               tag: 'actor-image-${actor.id}',
               child: CachedNetworkImage(
                 imageUrl: actor.imageUrl,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
@@ -39,20 +41,20 @@ class CustomListTile extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       actor.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(
                       actor.characterName,
                       style: TextStyle(
@@ -61,7 +63,7 @@ class CustomListTile extends StatelessWidget {
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Text(
                       actor.bio,
                       maxLines: 2,
