@@ -1,24 +1,24 @@
+// lib/main.dart
 import 'package:flutter/material.dart';
+import 'views/main_screen.dart';  // Correct path to the main_screen.dart file
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'La Casa de Papel App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,  // Theme color to match the show's theme
       ),
-      home: const MainPage(),
+      home: MainScreen(),  // MainScreen is now correctly referenced
     );
   }
 }
-
+/*
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
@@ -279,4 +279,4 @@ class CommentDetailPage extends StatelessWidget {
     );
   }
 }
-
+*/

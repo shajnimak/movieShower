@@ -1,0 +1,34 @@
+{
+    "actors": 
+    [
+      {
+        "id": 1,
+        "name": "Úrsula Corberó",
+        "characterName": "Tokyo",
+        "bio": "Úrsula Corberó plays Tokyo, the narrator of the series who is known for her impulsive and reckless nature.",
+        "imageUrl": "https://example.com/images/ursula-corbero.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Álvaro Morte",
+        "characterName": "The Professor",
+        "bio": "Álvaro Morte portrays The Professor, the mastermind behind the heist who manages to keep one step ahead of the authorities.",
+        "imageUrl": "https://example.com/images/alvaro-morte.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Itziar Ituño",
+        "characterName": "Raquel Murillo",
+        "bio": "Itziar Ituño plays Raquel Murillo, a police inspector who eventually joins the gang after falling in love with The Professor.",
+        "imageUrl": "https://example.com/images/itziar-ituno.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Pedro Alonso",
+        "characterName": "Berlin",
+        "bio": "Pedro Alonso plays Berlin, a key member of the gang known for his leadership qualities and complex moral code.",
+        "imageUrl": "https://example.com/images/pedro-alonso.jpg"
+      }
+    ]
+}
+  
