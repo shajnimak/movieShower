@@ -64,7 +64,7 @@ class MainScreen extends StatelessWidget {
                     // Navigate to the list of news screen
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListActorsScreen()),
+                      MaterialPageRoute(builder: (context) => const ListNewsScreen()),
                     );
                   },
                   child: const Text('List of News'),
