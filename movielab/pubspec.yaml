@@ -63,6 +63,7 @@ flutter:
     - assets/json/actors.json
     - assets/json/news.json
     - assets/json/stuff.json
+    - assets/json/comment.json
     - assets/img/mainPoster.jpg
 
 

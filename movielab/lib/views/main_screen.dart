@@ -53,7 +53,7 @@ class MainScreen extends StatelessWidget {
                     // Navigate to the list of actors screen
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListActorsScreen()),
+                      MaterialPageRoute(builder: (context) => const ListActorsScreen()),
                     );
                   },
                   child: const Text('List of Actors'),
@@ -69,6 +69,17 @@ class MainScreen extends StatelessWidget {
                   },
                   child: const Text('List of News'),
                 ),
+                const SizedBox(height: 10.0),
+                ElevatedButton(
+                  onPressed: () {
+                    // Navigate to the list of news screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ListCommentScreen()),
+                    );
+                  },
+                  child: const Text('Comments'),
+                )
                 // Add more buttons for other screens if needed
               ],
             ),

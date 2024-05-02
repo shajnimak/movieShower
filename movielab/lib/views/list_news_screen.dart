@@ -40,7 +40,7 @@ class _ListNewsScreenState extends State<ListNewsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('La Casa de Papel NEWS')),
+      appBar: AppBar(title: const Text('NEWS')),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _errorMessage.isNotEmpty
