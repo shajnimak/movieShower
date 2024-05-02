@@ -5,38 +5,74 @@ import 'list_stuff_screen.dart';
 import 'list_news_screen.dart';
 import 'list_comments_screen.dart';
 
-class MainScreen extends StatefulWidget {
-  @override
-  _MainScreenState createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  int _currentIndex = 0;
-  final List<Widget> _children = [
-    ListActorsScreen(),
-    //StuffListPage(),
-    //NewsListPage(),
-    //CommentsListPage(),
-  ];
-
-  void onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
+class MainScreen extends StatelessWidget {
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: onTabTapped,
-        currentIndex: _currentIndex,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Actors'),
-          BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Stuff'),
-          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'News'),
-          BottomNavigationBarItem(icon: Icon(Icons.comment), label: 'Comments'),
+      appBar: AppBar(
+        title: const Text('Brochure for the series'),
+      ),
+      body: Stack(
+        children: [
+          // Background image
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/img/mainPoster.jpg'), // Path to your image
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          // Content
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  '',
+                  style: TextStyle(fontSize: 40.0, color: Colors.white),
+                ),
+                const SizedBox(height: 250.0),
+                ElevatedButton(
+                  onPressed: () {
+                    // Navigate to the list of stuff screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ListActorsScreen()),
+                    );
+                  },
+                  child: const Text('List of Stuff'),
+                ),
+                const SizedBox(height: 10.0),
+                ElevatedButton(
+                  onPressed: () {
+                    // Navigate to the list of actors screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ListActorsScreen()),
+                    );
+                  },
+                  child: const Text('List of Actors'),
+                ),
+                const SizedBox(height: 10.0),
+                ElevatedButton(
+                  onPressed: () {
+                    // Navigate to the list of news screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ListActorsScreen()),
+                    );
+                  },
+                  child: const Text('List of News'),
+                ),
+                // Add more buttons for other screens if needed
+              ],
+            ),
+          ),
         ],
       ),
     );

@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,  // Theme color to match the show's theme
       ),
-      home: MainScreen(),  // MainScreen is now correctly referenced
+      home: const MainScreen(),  // MainScreen is now correctly referenced
     );
   }
 }
