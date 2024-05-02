@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import '../controllers/news_controller.dart';
 import '../models/news_item.dart';
-import '../widgets/custom_list_tile_news.dart';
+import '../widgets/custom_news_list_tile.dart';
 import 'detail_news_screen.dart';
 
 class ListNewsScreen extends StatefulWidget {

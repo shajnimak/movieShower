@@ -5,7 +5,10 @@ import '../models/stuff.dart';
 import '../widgets/custom_stuff_list_tile.dart'; // Custom ListTile for stuff items
 
 class ListStuffScreen extends StatefulWidget {
+  const ListStuffScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _ListStuffScreenState createState() => _ListStuffScreenState();
 }
 
@@ -36,9 +39,9 @@ class _ListStuffScreenState extends State<ListStuffScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Main Stuff')),
+      appBar: AppBar(title: const Text('Main Stuff')),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : _errorMessage.isNotEmpty
               ? Center(child: Text(_errorMessage))
               : ListView.builder(

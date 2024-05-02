@@ -1,5 +1,6 @@
 // lib/views/detail_actor_screen.dart
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:cached_network_image/cached_network_image.dart';
 import '../models/news_item.dart';
 

@@ -42,7 +42,7 @@ class MainScreen extends StatelessWidget {
                     // Navigate to the list of stuff screen
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListStuffScreen()),
+                      MaterialPageRoute(builder: (context) => const ListStuffScreen()),
                     );
                   },
                   child: const Text('List of Stuff'),

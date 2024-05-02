@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import '../controllers/comment_controller.dart';
 import '../models/comment.dart';
-import '../widgets/custom_list_tile_comment.dart';
+import '../widgets/custom_comment_list_tile.dart';
 
 class ListCommentScreen extends StatefulWidget {
   const ListCommentScreen({super.key});
