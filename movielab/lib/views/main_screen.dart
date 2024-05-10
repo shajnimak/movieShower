@@ -1,9 +1,9 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import '../../views/show_screen.dart';
+import '../../views/list_news_screen.dart';
 import '../../tools/border.dart';
 import '../../tools/colors.dart';
-
 import '../tools/styles.dart';
 
 class MainScreen extends StatelessWidget {
@@ -243,16 +243,18 @@ class MainScreen extends StatelessWidget {
                       horizontal: width * 0.03,
                       vertical: height * 0.02,
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'About Show',
-                          style: textStyle2,
-                        ),
-                        Text(
-                          'See all',
-                          style: textStyle11,
+                        const Text('About Show', style: textStyle2),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const ShowScreen()),
+                            );
+                          },
+                          child: const Text('See all', style: textStyle11),
                         ),
                       ],
                     ),
@@ -292,16 +294,18 @@ class MainScreen extends StatelessWidget {
                       horizontal: width * 0.03,
                       vertical: height * 0.02,
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'News',
-                          style: textStyle2,
-                        ),
-                        Text(
-                          'See all',
-                          style: textStyle11,
+                        const Text('News', style: textStyle2),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const ListNewsScreen()),
+                            );
+                          },
+                          child: const Text('See all', style: textStyle11),
                         ),
                       ],
                     ),

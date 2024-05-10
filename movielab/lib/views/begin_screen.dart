@@ -4,7 +4,6 @@ import '../tools/border.dart';
 import '../tools/colors.dart';
 import '../tools/styles.dart';
 import '../views/auth_screens/auth_begin_screen.dart';
-import '../views/main_screen.dart';
 
 class BeginScreen extends StatelessWidget {
   const BeginScreen({super.key});
