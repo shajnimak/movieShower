@@ -9,6 +9,7 @@ class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _AuthScreenState createState() => _AuthScreenState();
 }
 
