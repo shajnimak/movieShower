@@ -64,8 +64,12 @@ flutter:
     - assets/json/news.json
     - assets/json/stuff.json
     - assets/json/comment.json
+    - assets/img/main_poster.png
     - assets/img/mainPoster.jpg
-
+    - assets/img/logo.png
+    - assets/img/facebook.png
+    - assets/img/google.png
+    - assets/img/berlin.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
