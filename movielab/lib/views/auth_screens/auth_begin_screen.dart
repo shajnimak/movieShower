@@ -1,40 +1,56 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import '../../views/auth_screens/registration_screen.dart';
-import '../../views/begin_screen.dart';
+import 'package:http/http.dart' as http;
 import '../../views/main_screen.dart';
+import '../../views/begin_screen.dart';
+import '../../views/auth_screens/registration_screen.dart';
 import '../../tools/colors.dart';
 import '../../tools/styles.dart';
+import '../../config/uri.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _AuthScreenState createState() => _AuthScreenState();
 }
 
 class _AuthScreenState extends State<AuthScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _obscurePassword = true;
+  bool _isLoading = false;
 
-  void _signIn() {
+  Future<void> _signIn() async {
     if (_formKey.currentState!.validate()) {
-      print('Signing in with: ${_usernameController.text}');
-      // Proceed with backend authentication
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const MainScreen()),
+      setState(() {
+        _isLoading = true;
+      });
+
+      final response = await http.post(
+        Uri.parse('$backendUrl/auth/login'), // Use the custom backend URL
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'email': _emailController.text,
+          'password': _passwordController.text,
+        }),
       );
+
+      if (response.statusCode == 200) {
+        setState(() {
+          _isLoading = false;
+        });
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const MainScreen()));
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
-  }
-
-  void _signInWithGoogle() {
-    print('Google sign-in triggered');
-  }
-
-  void _signInWithFacebook() {
-    print('Facebook sign-in triggered');
   }
 
   void _togglePasswordVisibility() {
@@ -112,7 +128,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               children: [
                                 SizedBox(height: height * 0.08),
                                 TextFormField(
-                                  controller: _usernameController,
+                                  controller: _emailController,
                                   decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.blueGrey[50],
@@ -121,14 +137,17 @@ class _AuthScreenState extends State<AuthScreen> {
                                           BorderRadius.circular(width),
                                       borderSide: BorderSide.none,
                                     ),
-                                    hintText: 'Username',
+                                    hintText: 'Email',
                                     hintStyle: hintStyle,
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Please enter your username';
+                                      return 'Please enter your email';
                                     }
-                                    return null; // Valid input
+                                    if (!value.contains('@')) {
+                                      return 'Please enter a valid email';
+                                    }
+                                    return null;
                                   },
                                 ),
                                 SizedBox(height: height * 0.02),
@@ -162,7 +181,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     if (value.length < 6) {
                                       return 'Password must be at least 6 characters';
                                     }
-                                    return null; // Valid input
+                                    return null;
                                   },
                                 ),
                                 Container(
@@ -181,9 +200,12 @@ class _AuthScreenState extends State<AuthScreen> {
                                     backgroundColor: color1,
                                     fixedSize: Size(width * 0.8, height * 0.07),
                                   ),
-                                  onPressed: _signIn,
-                                  child:
-                                      const Text('Sign in', style: whiteStyle),
+                                  onPressed: _isLoading ? null : _signIn,
+                                  child: _isLoading
+                                      ? const CircularProgressIndicator(
+                                          color: Colors.white)
+                                      : const Text('Sign in',
+                                          style: whiteStyle),
                                 ),
                                 SizedBox(height: height * 0.01),
                                 TextButton(
@@ -195,14 +217,6 @@ class _AuthScreenState extends State<AuthScreen> {
                                   child: const Text('Create new account',
                                       style: TextStyle(color: color1)),
                                 ),
-                                SizedBox(height: height * 0.01),
-                                buildOAuthButton('Continue with Google',
-                                    'assets/img/google.png', _signInWithGoogle),
-                                SizedBox(height: height * 0.01),
-                                buildOAuthButton(
-                                    'Continue with Facebook',
-                                    'assets/img/facebook.png',
-                                    _signInWithFacebook),
                               ],
                             ),
                           ),
@@ -214,34 +228,6 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildOAuthButton(String text, String imagePath, Function() onTap) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-    return Container(
-      width: width * 0.9,
-      height: height * 0.06,
-      padding: EdgeInsets.symmetric(horizontal: width * 0.03),
-      decoration: BoxDecoration(
-        color: color2,
-        boxShadow: const [
-          BoxShadow(color: Colors.black26, blurRadius: 5, offset: Offset(2, 2))
-        ],
-        borderRadius: BorderRadius.circular(width),
-      ),
-      child: InkWell(
-        onTap: onTap,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Image.asset(imagePath, width: width * 0.08),
-            Text(text, style: blackStyle),
-            const Icon(Icons.arrow_right_rounded),
-          ],
         ),
       ),
     );
