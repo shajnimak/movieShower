@@ -1,16 +1,18 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:movielab/views/auth_screens/auth_begin_screen.dart';
+import '../../config/uri.dart'; // Import the configuration file
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _obscurePassword = true;
@@ -24,18 +26,36 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         _errorMessage = null;
       });
 
-      // Simulate a network call for user registration
-      await Future.delayed(Duration(seconds: 2)); // Simulating network delay
+      try {
+        final response = await http.post(
+          Uri.parse('$backendUrl/auth/register'), // Use the custom backend URL
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'email': _emailController.text,
+            'password': _passwordController.text,
+          }),
+        );
 
-      // Here, you would usually handle the actual registration logic,
-      // such as sending data to your backend API.
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      // On success, you might want to navigate to a different screen or show a success message.
-      // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => SomeOtherScreen()));
+        if (response.statusCode == 200) {
+          setState(() {
+            _isLoading = false;
+          });
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const AuthScreen()));
+        } else {
+          setState(() {
+            _isLoading = false;
+            _errorMessage = 'Registration failed: ${response.body}';
+          });
+        }
+      } catch (e) {
+        setState(() {
+          _isLoading = false;
+          _errorMessage = 'An error occurred: $e';
+        });
+      }
     }
   }
 
@@ -43,6 +63,28 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     setState(() {
       _obscurePassword = !_obscurePassword;
     });
+  }
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your email';
+    }
+    const emailPattern = r'^[^@\s]+@[^@\s]+\.[^@\s]+$';
+    if (!RegExp(emailPattern).hasMatch(value)) {
+      return 'Please enter a valid email';
+    }
+    return null;
+  }
+
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your password';
+    }
+    const passwordPattern = r'';
+    if (!RegExp(passwordPattern).hasMatch(value)) {
+      return 'Password must be at least 8 characters long, \ninclude an uppercase letter, a lowercase letter, \na number, and a special character';
+    }
+    return null;
   }
 
   @override
@@ -70,34 +112,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     style: Theme.of(context).textTheme.headlineSmall),
                 SizedBox(height: height * 0.02),
                 TextFormField(
-                  controller: _nameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Name',
-                    border: OutlineInputBorder(),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: height * 0.02),
-                TextFormField(
                   controller: _emailController,
                   decoration: const InputDecoration(
                     labelText: 'Email',
                     border: OutlineInputBorder(),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    if (!value.contains('@')) {
-                      return 'Please enter a valid email';
-                    }
-                    return null;
-                  },
+                  validator: _validateEmail,
                 ),
                 SizedBox(height: height * 0.02),
                 TextFormField(
@@ -115,15 +135,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       onPressed: _togglePasswordVisibility,
                     ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a password';
-                    }
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters long';
-                    }
-                    return null;
-                  },
+                  validator: _validatePassword,
                 ),
                 SizedBox(height: height * 0.04),
                 if (_errorMessage != null)
