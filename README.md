@@ -17,7 +17,7 @@ https://www.figma.com/file/g5526qING9IcSkKWGFGNrv/Untitled?type=design&node-id=0
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/[your-username]/lacasa-de-papel-flutter-app.git
+   git clone https://github.com/shajnimak/movieShower.git
 
 2. Navigate to the cloned repository:
    ```bash
