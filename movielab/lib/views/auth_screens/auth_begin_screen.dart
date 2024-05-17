@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+// ignore: depend_on_referenced_packages
+import 'package:shared_preferences/shared_preferences.dart'; // Add this import
 import '../../views/main_screen.dart';
 import '../../views/begin_screen.dart';
 import '../../views/auth_screens/registration_screen.dart';
 import '../../tools/colors.dart';
 import '../../tools/styles.dart';
-import '../../config/uri.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -21,15 +22,18 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _obscurePassword = true;
   bool _isLoading = false;
+  String? _errorMessage;
 
   Future<void> _signIn() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
+        _errorMessage = null;
       });
 
       final response = await http.post(
-        Uri.parse('$backendUrl/auth/login'), // Use the custom backend URL
+        Uri.parse(
+            'http://10.0.2.2:3000/auth/login'), // Use your local IP address here
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -40,14 +44,23 @@ class _AuthScreenState extends State<AuthScreen> {
       );
 
       if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        final accessToken = data['user']['stsTokenManager']['accessToken'];
+
+        // Save the access token
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('accessToken', accessToken);
+
         setState(() {
           _isLoading = false;
         });
+
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const MainScreen()));
       } else {
         setState(() {
           _isLoading = false;
+          _errorMessage = 'Login failed';
         });
       }
     }
