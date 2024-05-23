@@ -1,14 +1,19 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import '../../views/main_screen.dart';
 import '../../controllers/news_controller.dart';
 import '../../models/news_item.dart';
 import '../../widgets/custom_news_list_tile.dart';
 import 'detail_news_screen.dart';
+import 'package:http/http.dart' as http;
+
 
 class ListNewsScreen extends StatefulWidget {
   const ListNewsScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ListNewsScreenState createState() => _ListNewsScreenState();
 }
 
@@ -52,7 +57,7 @@ class _ListNewsScreenState extends State<ListNewsScreen> {
               // If no previous screen, replace with the main screen
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => MainScreen()),
+                MaterialPageRoute(builder: (context) => const MainScreen()),
               );
             }
           },
