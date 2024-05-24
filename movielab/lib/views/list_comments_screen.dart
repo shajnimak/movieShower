@@ -31,7 +31,8 @@ class _ListCommentScreenState extends State<ListCommentScreen> {
     } catch (e) {
       setState(() {
         _isLoading = false;
-        _errorMessage = 'Failed to load comments: $e'; // Capturing and displaying error message
+        _errorMessage =
+            'Failed to load comments: $e'; // Capturing and displaying error message
       });
     }
   }
@@ -43,15 +44,13 @@ class _ListCommentScreenState extends State<ListCommentScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _errorMessage.isNotEmpty
-            ? Center(child: Text(_errorMessage))
-            : ListView.builder(
-                itemCount: _comments.length,
-                itemBuilder: (context, index) {
-                  return CustomCommentTile(
-                    comment: _comments[index]
-                  );
-                },
-              ),
+              ? Center(child: Text(_errorMessage))
+              : ListView.builder(
+                  itemCount: _comments.length,
+                  itemBuilder: (context, index) {
+                    return CustomCommentTile(comment: _comments[index]);
+                  },
+                ),
     );
   }
 }

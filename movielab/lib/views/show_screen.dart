@@ -8,7 +8,7 @@ import '../../tools/styles.dart';
 import '../../views/list_actors_screen.dart';
 
 class ShowScreen extends StatelessWidget {
-  const ShowScreen({Key? key}) : super(key: key);
+  const ShowScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class ShowScreen extends StatelessWidget {
     String desc =
         'Eight thieves take hostages and lock themselves in the Royal Mint of Spain as a criminal mastermind manipulates the police to carry out his plan';
     return Container(
-      color: Color.fromARGB(255, 28, 33, 37),
+      color: const Color.fromARGB(255, 28, 33, 37),
       child: SafeArea(
         child: Scaffold(
           body: SizedBox(
@@ -158,7 +158,7 @@ class ShowScreen extends StatelessWidget {
                                 'Cast List',
                                 ['lisboa.jpeg', 'berlin.jpeg', 'tokyo.jpeg'],
                                 ['detail7', 'detail8', 'detail9'],
-                                ListActorsScreen()),
+                                const ListActorsScreen()),
                             SizedBox(height: height * 0.02),
                             sectionWithSeeAll(
                                 context,
@@ -169,7 +169,7 @@ class ShowScreen extends StatelessWidget {
                                   'jesus_colmenar.jpg'
                                 ],
                                 ['detail10', 'detail11', 'detail12'],
-                                ListStuffScreen()), // Adjust screen name
+                                const ListStuffScreen()), // Adjust screen name
                             SizedBox(height: height * 0.02),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
@@ -198,7 +198,6 @@ class ShowScreen extends StatelessWidget {
 
   Widget sectionWithSeeAll(BuildContext context, String title,
       List<String> imageNames, List<String> heroTags, Widget nextPage) {
-    final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     List<Widget> images = List.generate(imageNames.length,
         (index) => buildHeroImage(context, imageNames[index], heroTags[index]));

@@ -1,13 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import '../../views/main_screen.dart';
 import '../../controllers/news_controller.dart';
 import '../../models/news_item.dart';
 import '../../widgets/custom_news_list_tile.dart';
 import 'detail_news_screen.dart';
-import 'package:http/http.dart' as http;
-
 
 class ListNewsScreen extends StatefulWidget {
   const ListNewsScreen({super.key});
