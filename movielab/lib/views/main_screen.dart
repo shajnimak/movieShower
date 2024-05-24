@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:movielab/views/auth_screens/auth_begin_screen.dart';
+import 'list_events_screen.dart'; // Import the new events list screen
 import '../../views/show_screen.dart';
 import '../../views/list_news_screen.dart';
 import '../../tools/border.dart';
@@ -55,31 +57,39 @@ class MainScreen extends StatelessWidget {
                             size: width * 0.07,
                           ),
                         ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: height * 0.005,
-                            horizontal: width * 0.01,
-                          ),
-                          decoration: BoxDecoration(
-                            color: redColor1,
-                            borderRadius: getBorderRadiusWidget(context, 0.1),
-                            border: Border.all(width: 2, color: Colors.black),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(width * 0.02),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      getBorderRadiusWidget(context, 1),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const AuthScreen()),
+                            );
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              vertical: height * 0.005,
+                              horizontal: width * 0.01,
+                            ),
+                            decoration: BoxDecoration(
+                              color: redColor1,
+                              borderRadius: getBorderRadiusWidget(context, 0.1),
+                              border: Border.all(width: 2, color: Colors.black),
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(width * 0.02),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
+                                        getBorderRadiusWidget(context, 1),
+                                  ),
+                                  child: const Icon(
+                                    Icons.logout,
+                                    color: redColor1,
+                                  ),
                                 ),
-                                child: const Icon(
-                                  Icons.logout,
-                                  color: redColor1,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -123,121 +133,50 @@ class MainScreen extends StatelessWidget {
                   ),
                   SizedBox(height: height * 0.01),
                   Padding(
-                    padding: EdgeInsets.all(width * 0.03),
-                    child: const Text(
-                      'Calendar',
-                      style: textStyle2,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.03,
+                      vertical: height * 0.02,
                     ),
-                  ),
-                  SizedBox(height: height * 0.01),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: width * 0.02),
-                          padding: EdgeInsets.symmetric(
-                            vertical: height * 0.006,
-                            horizontal: width * 0.02,
-                          ),
-                          decoration: BoxDecoration(
-                            color: redColor2,
-                            borderRadius: getBorderRadiusWidget(context, 1),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.directions_walk_rounded,
-                                color: redColor1,
-                              ),
-                              SizedBox(width: width * 0.02),
-                              const Text(
-                                'Action',
-                                style: textStyle13,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: width * 0.02),
-                          padding: EdgeInsets.symmetric(
-                            vertical: height * 0.006,
-                            horizontal: width * 0.02,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
-                            borderRadius: getBorderRadiusWidget(context, 1),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.car_crash_rounded,
-                                color: Colors.black,
-                              ),
-                              SizedBox(width: width * 0.02),
-                              const Text(
-                                'Racing',
-                                style: textStyle6,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: width * 0.02),
-                          padding: EdgeInsets.symmetric(
-                            vertical: height * 0.006,
-                            horizontal: width * 0.02,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
-                            borderRadius: getBorderRadiusWidget(context, 1),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.castle,
-                                color: Colors.black,
-                              ),
-                              SizedBox(width: width * 0.02),
-                              const Text(
-                                'Strategy',
-                                style: textStyle6,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin:
-                              EdgeInsets.symmetric(horizontal: width * 0.02),
-                          padding: EdgeInsets.symmetric(
-                            vertical: height * 0.006,
-                            horizontal: width * 0.02,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
-                            borderRadius: getBorderRadiusWidget(context, 1),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.child_care,
-                                color: Colors.black,
-                              ),
-                              SizedBox(width: width * 0.02),
-                              const Text(
-                                'Kids',
-                                style: textStyle6,
-                              ),
-                            ],
-                          ),
+                        const Text('Upcoming Events', style: textStyle2),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ListEventsScreen()),
+                            );
+                          },
+                          child: const Text('See all', style: textStyle11),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: height * 0.01),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        EventContainer(
+                          title: 'Event 1',
+                          description: 'Description 1',
+                        ),
+                        EventContainer(
+                          title: 'Event 2',
+                          description: 'Description 2',
+                        ),
+                        EventContainer(
+                          title: 'Event 3',
+                          description: 'Description 3',
+                        ),
+                        EventContainer(
+                          title: 'Event 4',
+                          description: 'Description 4',
+                        ),
+                      ],
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: width * 0.03,
@@ -322,6 +261,56 @@ class MainScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class EventContainer extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const EventContainer({
+    super.key,
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: width * 0.02),
+      padding: EdgeInsets.symmetric(
+        vertical: height * 0.006,
+        horizontal: width * 0.02,
+      ),
+      decoration: BoxDecoration(
+        color: redColor2,
+        borderRadius: getBorderRadiusWidget(context, 1),
+      ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.event,
+            color: redColor1,
+          ),
+          SizedBox(width: width * 0.02),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: textStyle13,
+              ),
+              Text(
+                description,
+                style: textStyle6,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
