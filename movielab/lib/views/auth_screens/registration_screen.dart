@@ -8,6 +8,7 @@ class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
@@ -42,6 +43,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           setState(() {
             _isLoading = false;
           });
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (context) => const AuthScreen()));
         } else {
@@ -125,7 +127,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword

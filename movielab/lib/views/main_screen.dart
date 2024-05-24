@@ -9,7 +9,7 @@ import '../../tools/colors.dart';
 import '../tools/styles.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +154,7 @@ class MainScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SingleChildScrollView(
+                  const SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
@@ -434,13 +434,13 @@ class NewGamesWidget extends StatelessWidget {
 
 class GameOverViewWidget extends StatelessWidget {
   const GameOverViewWidget({
-    Key? key,
+    super.key,
     required this.width,
     required this.height,
     required this.imageName,
     required this.name,
     required this.star,
-  }) : super(key: key);
+  });
 
   final double width;
   final double height;

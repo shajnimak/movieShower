@@ -13,6 +13,7 @@ class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _AuthScreenState createState() => _AuthScreenState();
 }
 
@@ -22,13 +23,11 @@ class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _obscurePassword = true;
   bool _isLoading = false;
-  String? _errorMessage;
 
   Future<void> _signIn() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
-        _errorMessage = null;
       });
 
       final response = await http.post(
@@ -55,12 +54,12 @@ class _AuthScreenState extends State<AuthScreen> {
           _isLoading = false;
         });
 
+        // ignore: use_build_context_synchronously
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const MainScreen()));
       } else {
         setState(() {
           _isLoading = false;
-          _errorMessage = 'Login failed';
         });
       }
     }

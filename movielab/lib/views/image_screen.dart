@@ -4,10 +4,10 @@ import '../../views/show_screen.dart';
 
 class ImageScreen extends StatelessWidget {
   const ImageScreen({
-    Key? key,
+    super.key,
     required this.image,
     required this.hero,
-  }) : super(key: key);
+  });
   final String image;
   final String hero;
 
@@ -21,7 +21,7 @@ class ImageScreen extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => ShowScreen()),
+              MaterialPageRoute(builder: (context) => const ShowScreen()),
             );
           },
           icon: const Icon(
