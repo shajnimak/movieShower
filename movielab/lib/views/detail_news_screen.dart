@@ -30,8 +30,10 @@ class DetailNewsScreen extends StatelessWidget {
               tag: 'actor-image-${newsItem.id}',
               child: CachedNetworkImage(
                 imageUrl: newsItem.imageUrl,
-                placeholder: (context, url) => const CircularProgressIndicator(),
-                errorWidget: (context, url, error) => const Icon(Icons.error_outline),
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.error_outline),
                 width: double.infinity,
                 height: 300,
                 fit: BoxFit.cover,

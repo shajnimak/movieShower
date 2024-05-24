@@ -9,7 +9,7 @@ import '../../tools/colors.dart';
 import '../tools/styles.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -154,25 +154,26 @@ class MainScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SingleChildScrollView(
+                  const SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
                         EventContainer(
-                          title: 'Event 1',
-                          description: 'Description 1',
+                          title: 'The Heist Begins',
+                          description: 'Team robs Royal Mint',
                         ),
                         EventContainer(
-                          title: 'Event 2',
-                          description: 'Description 2',
+                          title: "Professor's Plan",
+                          description: 'Printing money, media manipulation.',
                         ),
                         EventContainer(
-                          title: 'Event 3',
-                          description: 'Description 3',
+                          title: 'Gold Heist',
+                          description: 'Smuggling gold with intricate plan.',
                         ),
                         EventContainer(
-                          title: 'Event 4',
-                          description: 'Description 4',
+                          title: 'Final Stand',
+                          description:
+                              'Clever tactics, robbers escape legacy secured.',
                         ),
                       ],
                     ),
@@ -434,13 +435,13 @@ class NewGamesWidget extends StatelessWidget {
 
 class GameOverViewWidget extends StatelessWidget {
   const GameOverViewWidget({
-    Key? key,
+    super.key,
     required this.width,
     required this.height,
     required this.imageName,
     required this.name,
     required this.star,
-  }) : super(key: key);
+  });
 
   final double width;
   final double height;
